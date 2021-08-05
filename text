@@ -1,0 +1,13 @@
+mkdir vendor
+git init
+git pull https://github.com/MoekaKitamura/vending_machine master
+git checkout -b ブランチ名
+git push https://github.com/MoekaKitamura/vending_machine ブランチ名
+
+１日目
+
+irb で絶対パスを指定してあげることでファイルを実行できるようになる
+initialize で vm = VendingMachine.new したときに @slot_money を初期化
+vm は VendingMachine クラスをもっているので メソッドをもつ
+MONEY を freeze で定数化
+
