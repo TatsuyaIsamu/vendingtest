@@ -1,5 +1,3 @@
-mkdir vendor
-git init
 git pull https://github.com/MoekaKitamura/vending_machine master
 git checkout -b ブランチ名
 git push https://github.com/MoekaKitamura/vending_machine ブランチ名
@@ -11,3 +9,18 @@ initialize で vm = VendingMachine.new したときに @slot_money を初期化
 vm は VendingMachine クラスをもっているので メソッドをもつ
 MONEY を freeze で定数化
 
+２日目
+
+コーラの値を保有するためにハッシュで管理する
+ストックも併せて定義初期値として定義
+初期値で保有だからinitialize に入れる
+irb はコードの変更で再度読み込みが必要
+initialize で初期値をハッシュを保有
+＊は数字にしか使えない
+＠変数は同じクラス内でしか参照できない(rails はコントローラーとモデルが同じスコープ　ｐ２１５）
+参照する場合はメソッドを定義
+アクセサメソッドを使うと直接インスタンスの保有している値にアクセスできる（書き換えられる）
+vm が自動販売機１台というイメージ
+vendingMachine は自動販売機製造機
+ハッシュの型を文字列型にするか。数字列型にするか
+最後の変数名が返り値となる
