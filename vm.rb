@@ -12,6 +12,7 @@
 # 作成した自動販売機に入れたお金を返してもらう
 # vm.return_money
 class VendingMachine
+
   # ステップ０　お金の投入と払い戻しの例コード
   # ステップ１　扱えないお金の例コードorb
   # 10円玉、50円玉、100円玉、500円玉、1000円札を１つずつ投入できる。
@@ -24,6 +25,7 @@ class VendingMachine
     # 使いたい変数は初めにinitializeに初期値を設定しないと使えない
     @sales_money = 0
     @coke = {price:120, name:'coke', stock: 5}
+    # @list = []
   end
   def coke
     @coke
