@@ -24,10 +24,19 @@ class VendingMachine
     # 使いたい変数は初めにinitializeに初期値を設定しないと使えない
     @sales_money = 0
     @coke = {price:120, name:'coke', stock: 5}
+    @redbull = {price:200, name:'redbull', stock: 5}
+    @water = {price:100, name:'water', stock: 5}
   end
   def coke
     @coke
   end
+  def redbull
+    @redbull
+  end
+  def water
+    @water
+  end
+
   #exit投入金額の総計を取得できる。
   def current_slot_money
     # 自動販売機に入っているお金を表示する
@@ -56,8 +65,22 @@ class VendingMachine
       @slot_money -= @coke[:price]
       puts "お買い上げありがとうございます！！"
     else
-      return false
+      false
     end
+  end
+  # def can_buy_coke?
+  #   if @slot_money >= @coke[:price] && @coke[:stock] > 0
+  #     puts "買えます"
+  #   else 
+  #     puts "買えません"
+  #   end
+  # end
+  def list
+    @list = []
+    @list << "coke" if @slot_money >= @coke[:price] && @coke[:stock] > 0
+    @list << "redbull" if @slot_money >= @redbull[:price] && @redbull[:stock] > 0
+    @list << "water" if @slot_money >= @water[:price] && @water[:stock] > 0 
+    @list
   end
   # 今の売上金が見たいとき、(vm.sales)
   def sales
