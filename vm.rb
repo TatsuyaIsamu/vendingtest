@@ -64,6 +64,7 @@ class VendingMachine
       @sales_money += @coke[:price]
       @slot_money -= @coke[:price]
       puts "お買い上げありがとうございます！！"
+      @slot_money
     else
       false
     end
