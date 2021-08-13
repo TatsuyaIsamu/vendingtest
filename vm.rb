@@ -12,7 +12,7 @@
 # 作成した自動販売機に入れたお金を返してもらう
 # vm.return_money
 class VendingMachine
-
+  #attr_accessor :drink
   # ステップ０　お金の投入と払い戻しの例コード
   # ステップ１　扱えないお金の例コードorb
   # 10円玉、50円玉、100円玉、500円玉、1000円札を１つずつ投入できる。
@@ -24,20 +24,11 @@ class VendingMachine
     @slot_money = 0
     # 使いたい変数は初めにinitializeに初期値を設定しないと使えない
     @sales_money = 0
-    @coke = {price:120, name:'coke', stock: 5}
+    @drink = Drink.new
+  end
 
-    @redbull = {price:200, name:'redbull', stock: 5}
-    @water = {price:100, name:'water', stock: 5}
-
-  end
-  def coke
-    @coke
-  end
-  def redbull
-    @redbull
-  end
-  def water
-    @water
+  def stock
+    @drink
   end
 
   #exit投入金額の総計を取得できる。
@@ -61,11 +52,19 @@ class VendingMachine
     # 自動販売機に入っているお金を0円に戻す
     @slot_money = 0
   end
-  def buy
-    if @slot_money >= @coke[:price] && @coke[:stock] > 0
-      @coke[:stock]-=1
-      @sales_money += @coke[:price]
-      @slot_money -= @coke[:price]
+  def buy(drink)
+    case drink
+    when "coke"
+      buy_drink = @drink.coke
+    when "redbull"
+      buy_drink = @drink.redbull
+    when "water"
+      buy_drink = @drink.water
+    end
+    if @slot_money >= buy_drink[:price] && buy_drink[:stock] > 0
+      buy_drink[:stock]-=1
+      @sales_money += buy_drink[:price]
+      @slot_money -= buy_drink[:price]
       puts "お買い上げありがとうございます！！"
       @slot_money
     else
@@ -81,7 +80,7 @@ class VendingMachine
   # end
   def list
     @list = []
-    @list << "coke" if @slot_money >= @coke[:price] && @coke[:stock] > 0
+    @list << "coke" if @slot_money >= @drink[:price] && @drink[:stock] > 0
     @list << "redbull" if @slot_money >= @redbull[:price] && @redbull[:stock] > 0
     @list << "water" if @slot_money >= @water[:price] && @water[:stock] > 0 
     @list
@@ -90,6 +89,16 @@ class VendingMachine
   def sales
     @sales_money
   end
-
 end
+
+class Drink
+  attr_accessor :coke, :redbull, :water
+
+  def initialize
+    @coke = {price:120, name:'coke', stock: 5}
+    @redbull = {price:200, name:'redbull', stock: 5}
+    @water = {price:100, name:'water', stock: 5}
+  end
+end
+
 
