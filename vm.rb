@@ -61,19 +61,17 @@ class VendingMachine < VendingMachineToCompany
       if @slot_money >= buy_drink[:price] && buy_drink[:stock] > 0
         if @previousdrink == drink
           @flug << drink
-          binding.irb
         end
         if @flug.length == 2
           puts "#{drink}3連続"
           @flug = []
-          binding.irb
         end
         buy_drink[:stock]-=1
         @sales_money += buy_drink[:price]
         @slot_money -= buy_drink[:price]
         puts "お買い上げありがとうございます！！"
         @previousdrink = drink
-        binding.irb
+
         @slot_money
       else
         false
