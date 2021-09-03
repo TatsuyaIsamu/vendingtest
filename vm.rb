@@ -61,11 +61,14 @@ class VendingMachine < VendingMachineToCompany
       if @slot_money >= buy_drink[:price] && buy_drink[:stock] > 0
         if @previousdrink == drink
           @flug << drink
-        end
-        if @flug.length == 2
-          puts "#{drink}3連続"
+          if @flug.length == 2
+            puts "#{drink}3連続"
+            @flug = []
+          end
+        else
           @flug = []
         end
+        
         buy_drink[:stock]-=1
         @sales_money += buy_drink[:price]
         @slot_money -= buy_drink[:price]
@@ -94,7 +97,7 @@ end
 class Drink
   attr_accessor :coke, :redbull, :water
   def initialize
-    @coke = {price:120, name:'coke', stock: 5}
+    @coke = {price:120, name:'coke', stock: 10}
     @redbull = {price:200, name:'redbull', stock: 5}
     @water = {price:100, name:'water', stock: 5}
   end
